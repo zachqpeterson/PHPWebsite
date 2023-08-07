@@ -1,50 +1,40 @@
 <?php
-
-// Create constants STOCK: MUST REPLACE
 DEFINE('DB_USER', 'root');
 DEFINE('DB_PSWD', 'Abcd11121314!');
 DEFINE('DB_SERVER', 'localhost');
 DEFINE('DB_NAME', 'GamesDB');
 
-// ///////////////////////////////////////////////////
-// Get db connection
-function ConnGet()
+function GetConnection()
 {
-    // $dbConn will contain a resource link to the database
-    // @ Don't display error
     $dbConn = @mysqli_connect(DB_SERVER, DB_USER, DB_PSWD, DB_NAME, 3306)
-        or die('Failed to connect to MySQL ' . DB_SERVER . '::' . DB_NAME . ' : ' . mysqli_connect_error()); // Display messge and end PHP script
+        or die('Failed to connect to MySQL ' . DB_SERVER . '::' . DB_NAME . ' : ' . mysqli_connect_error());
 
     return $dbConn;
 }
-// ///////////////////////////////////////////////////
-// Get Select records based on the Parent Id
-function MyPagesGet($dbConn, $Parent = 0)
+
+function GetChildPages($dbConn, $Parent = 0)
 {
-    $query = "SELECT id, title, header, content FROM SubPage where isActive = 1 and parentPage = " . $Parent . " order by ParentPage asc;";
+    $query = "SELECT id, title, header, content FROM SubPage WHERE isActive = 1 AND parentPage = " . $Parent . " ORDER BY ParentPage ASC;";
 
     return @mysqli_query($dbConn, $query);
 }
-// ///////////////////////////////////////////////////
-// Get all the page records
-function MyPagesAllGet($dbConn)
+
+function GetAllPages($dbConn)
 {
-    $query = "SELECT id, title, header, content, parentPage, isActive FROM SubPage order by parentPage asc;";
+    $query = "SELECT id, title, header, content, parentPage, isActive FROM SubPage ORDER BY parentPage ASC;";
 
     return @mysqli_query($dbConn, $query);
 }
-// ///////////////////////////////////////////////////
-// Get Select page
-function PageContentGet($dbConn, $Id)
+
+function GetPageContent($dbConn, $Id)
 {
     $return = null;
 
-    $query = "SELECT id, title, header, content FROM SubPage where isActive = 1 and id = " . $Id;
+    $query = "SELECT id, title, header, content, parentPage FROM SubPage WHERE isActive = 1 AND id = " . $Id;
     $return = @mysqli_query($dbConn, $query);
 
     if ((!$return) || ($return->num_rows < 1)) {
-        // return a defaul fault page
-        $query = "SELECT id, title, header, content FROM SubPage where isActive = 1 limit 1;";
+        $query = "SELECT id, title, header, content, parentPage FROM SubPage WHERE isActive = 1 limit 1;";
 
         $return = @mysqli_query($dbConn, $query);
     }
@@ -52,16 +42,24 @@ function PageContentGet($dbConn, $Id)
     return $return;
 }
 
-// ///////////////////////////////////////////////////
-// Get all the page records
-function MyPageRemove($dbConn, $Id)
+function UpdatePageContent($dbConn, $id, $title, $header, $content)
 {
+	$query = "UPDATE SubPage SET title = '" . $title . "', header = '" . $header . "', content = '" . $content . "' WHERE id = " . $id . ";";
 
-    // Never delete a page. set it to incative
-    $query = "Update FROM SubPage set isActive = 0 where id = " . $Id;
+	return @mysqli_query($dbConn, $query);
+}
+
+function RemovePage($dbConn, $Id)
+{
+    $query = "UPDATE SubPage SET isActive = 0 WHERE id = " . $Id . ";";
 
     return @mysqli_query($dbConn, $query);
 }
+
+function UnremovePage($dbConn, $Id)
+{
+	$query = "UPDATE SubPage SET isActive = 1 WHERE id = " . $Id . ";";
+
+	return @mysqli_query($dbConn, $query);
+}
 ?>
-
-

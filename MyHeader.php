@@ -57,13 +57,13 @@ $MyHeader = "Games Library";
 <h1><?php echo $MyHeader ?></h1>
 
 <?php
-$myDbConn = ConnGet();
+$myDbConn = GetConnection();
 ?>
 
 &nbsp;&nbsp;<a href="Index.php">Home</a>
 &nbsp;&nbsp;<a href="Preferences.php">Settings</a>
 
-<form id="login" method="post">
+<form method="post">
 	<button type="submit" name="Login"><?php echo ($_SESSION["isAdmin"] == 0 ? "login" : "logout") ?></button>
 </form>
 

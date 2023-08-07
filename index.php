@@ -10,11 +10,11 @@ if (array_key_exists("PageId", $_GET) == true) {
 ?>
 
 <?php
-$PageData = PageContentGet($myDbConn, $PageId);
+$PageData = GetPageContent($myDbConn, $PageId);
 PageDisplay($PageData);
 mysqli_free_result($PageData);
 
-$SubPages = MyPagesGet($myDbConn, $PageId);
+$SubPages = GetChildPages($myDbConn, $PageId);
 if (($PageId != "0") && ($SubPages) && ($SubPages->num_rows > 0)) {
     MenuDisplay($SubPages);
     mysqli_free_result($SubPages);
@@ -23,7 +23,10 @@ if (($PageId != "0") && ($SubPages) && ($SubPages->num_rows > 0)) {
 ?>
 
 <?php
-
+if($_SESSION["isAdmin"] == 1)
+{
+	echo '<br/><br/><a href="EditPage.php?PageId=' . $PageId . '">Edit Page</a>';
+}
 ?>
 
 <?php
