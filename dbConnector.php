@@ -1,10 +1,10 @@
 <?php
 
 // Create constants STOCK: MUST REPLACE
-DEFINE('DB_USER', 'MyUser');
-DEFINE('DB_PSWD', 'talasIV');
+DEFINE('DB_USER', 'root');
+DEFINE('DB_PSWD', 'Abcd11121314!');
 DEFINE('DB_SERVER', 'localhost');
-DEFINE('DB_NAME', 'mytestdb');
+DEFINE('DB_NAME', 'GamesDB');
 
 // ///////////////////////////////////////////////////
 // Get db connection
@@ -21,8 +21,7 @@ function ConnGet()
 // Get Select records based on the Parent Id
 function MyPagesGet($dbConn, $Parent = 0)
 {
-    $query = "SELECT id, Title, Header1, Text1 FROM MyWebDocs where isActive = 1 and ParentPage = " . $Parent . " order by ParentPage asc, SortOrder Asc;";
-    // SELECT id, Title, Header1, Text1 FROM MyWebDocs where isActive = 1 and ParentPage = " . $Parent . " order by ParentPage asc, SortOrder Asc;
+    $query = "SELECT id, title, header, content FROM SubPage where isActive = 1 and parentPage = " . $Parent . " order by ParentPage asc;";
 
     return @mysqli_query($dbConn, $query);
 }
@@ -30,7 +29,7 @@ function MyPagesGet($dbConn, $Parent = 0)
 // Get all the page records
 function MyPagesAllGet($dbConn)
 {
-    $query = "SELECT id, Title, Header1, Text1, ParentPage, SortOrder, isActive FROM MyWebDocs order by ParentPage asc, SortOrder Asc;";
+    $query = "SELECT id, title, header, content, parentPage, isActive FROM SubPage order by parentPage asc;";
 
     return @mysqli_query($dbConn, $query);
 }
@@ -40,12 +39,12 @@ function PageContentGet($dbConn, $Id)
 {
     $return = null;
 
-    $query = "SELECT id, Title, Header1, Text1 FROM MyWebDocs where isActive = 1 and id = " . $Id;
+    $query = "SELECT id, title, header, content FROM SubPage where isActive = 1 and id = " . $Id;
     $return = @mysqli_query($dbConn, $query);
 
     if ((!$return) || ($return->num_rows < 1)) {
         // return a defaul fault page
-        $query = "SELECT id, Title, Header1, Text1 FROM MyWebDocs where isActive = 1 order by SortOrder asc limit 1;";
+        $query = "SELECT id, title, header, content FROM SubPage where isActive = 1 limit 1;";
 
         $return = @mysqli_query($dbConn, $query);
     }
@@ -59,7 +58,7 @@ function MyPageremove($dbConn, $Id)
 {
 
     // Never delete a page. set it to incative
-    $query = "Update FROM MyWebDocs set isActive = 0 where id = " . $Id;
+    $query = "Update FROM SubPage set isActive = 0 where id = " . $Id;
 
     return @mysqli_query($dbConn, $query);
 }
