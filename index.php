@@ -23,6 +23,10 @@ if (($PageId != "0") && ($SubPages) && ($SubPages->num_rows > 0)) {
 ?>
 
 <?php
+
+?>
+
+<?php
 if ($myDbConn) {
     mysqli_close($myDbConn);
 }

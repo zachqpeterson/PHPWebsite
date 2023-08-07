@@ -9,15 +9,17 @@ include_once "Helper.php";
 
 $myStyle = "1";
 
-// Check for Priv setting
-if (isset($_SESSION["isAdmin"]) == false) {
-    $_SESSION["isAdmin"] = 0; // Set default
+if (array_key_exists('Login', $_POST)) {
+	if($_SESSION["isAdmin"] == 1) { $_SESSION["isAdmin"] = 0; }
+	else { $_SESSION["isAdmin"] = 1; }
 }
-// Check for style setting
+else if (!isset($_SESSION["isAdmin"])) {
+    $_SESSION["isAdmin"] = 0;
+}
+
 if (isset($_COOKIE["MyStyle"]) == true) {
     $myStyle = $_COOKIE["MyStyle"];
 } else {
-    // Set default style
     $_COOKIE["MyStyle"] = $myStyle;
 }
 
@@ -58,15 +60,17 @@ $MyHeader = "Games Library";
 $myDbConn = ConnGet();
 ?>
 
-&nbsp; &nbsp;<a href="Index.php">Home</a>
+&nbsp;&nbsp;<a href="Index.php">Home</a>
+&nbsp;&nbsp;<a href="Preferences.php">Settings</a>
+
+<form id="login" method="post">
+	<button type="submit" name="Login"><?php echo ($_SESSION["isAdmin"] == 0 ? "login" : "logout") ?></button>
+</form>
 
 <?php
 if ($_SESSION["isAdmin"] == 1) {
-    echo '  &nbsp; &nbsp;<a href="ManagePages.php">Manage Pages</a>';
-} else {
-    echo '  &nbsp; &nbsp;<a href="Login.php">Login</a>';
+	echo '&nbsp;&nbsp;&nbsp;&nbsp;ADMIN';
 }
 ?>
 
-&nbsp; &nbsp;<a href="Preferences.php">Settings</a>
 <br />
