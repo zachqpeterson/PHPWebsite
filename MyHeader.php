@@ -1,9 +1,8 @@
 <?php
-session_start(); // Must be first, prior to any HTML. Session will expire
+session_start();
 
 include_once "dbConnector.php";
 include_once "Helper.php";
-
 ?>
 
 <?php
@@ -22,8 +21,8 @@ if (isset($_COOKIE["MyStyle"]) == true) {
     $_COOKIE["MyStyle"] = $myStyle;
 }
 
-$myTitle = "my title";
-$MyHeader = "My Header";
+$MyTitle = "Library";
+$MyHeader = "Games Library";
 
 ?>
 <!DOCTYPE html>
@@ -31,15 +30,9 @@ $MyHeader = "My Header";
 
 <head>
   <meta content="text/html; charset=ISO-8859-1"  http-equiv="content-type">
-  <title><?php echo $myTitle ?></title>
-
-    <!--
-        <script src="/Scripts/jquery-ui-1.11.1.Redmond/jquery.js"></script>
-        <script src="/Scripts/jquery-ui-1.11.1.Redmond/jquery-ui.js"></script>
-        <link href="/Scripts/jquery-ui-1.11.1.Redmond/jquery-ui.css" rel="stylesheet" />
-        -->
+  <title><?php echo $MyTitle ?></title>
     <?php
-    // Set style page
+	//Could do: echo '<link rel="stylesheet" type="text/css"  href="/myStyle' . $myStyle . '.css">'
     switch ($myStyle) {
         case "1":
             echo '<link rel="stylesheet" type="text/css"  href="/myStyle1.css">';
@@ -56,41 +49,24 @@ $MyHeader = "My Header";
     }
     ?>
 
-    <!-- 
-  <link rel="stylesheet" type="text/css"  href="/MyStyle.php">
-    -->
 </head>
 <body>
 
 <h1><?php echo $MyHeader ?></h1>
 
-<br />
-    <!-- Get the menu items -->
 <?php
 $myDbConn = ConnGet();
-
-// $recordset = MyPagesAllGet($myDbConn); 
-$recordset = MyPagesGet($myDbConn, 0);
-// Display the main menu
-MenuDisplay($recordset);
-mysqli_free_result($recordset);
-
 ?>
-    <!-- Add a link for the custom settings -->
-    &nbsp; &nbsp;<a href="Preferences.php">My Preferences </a>
+
+&nbsp; &nbsp;<a href="Index.php">Home</a>
 
 <?php
-
-// Add a Admin link if. . . 
-// $_SESSION["isAdmin"] = 1; // Cheat - Do not do this in your code. 
 if ($_SESSION["isAdmin"] == 1) {
     echo '  &nbsp; &nbsp;<a href="ManagePages.php">Manage Pages</a>';
 } else {
     echo '  &nbsp; &nbsp;<a href="Login.php">Login</a>';
 }
-
-
 ?>
-<br />
-<br />
 
+&nbsp; &nbsp;<a href="Preferences.php">Settings</a>
+<br />

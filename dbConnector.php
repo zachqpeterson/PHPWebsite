@@ -54,7 +54,7 @@ function PageContentGet($dbConn, $Id)
 
 // ///////////////////////////////////////////////////
 // Get all the page records
-function MyPageremove($dbConn, $Id)
+function MyPageRemove($dbConn, $Id)
 {
 
     // Never delete a page. set it to incative
