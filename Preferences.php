@@ -1,5 +1,4 @@
 <?php
-$PrefStyle = 1;
 
 if (array_key_exists("styleButton", $_POST))
 {
@@ -18,7 +17,7 @@ if (array_key_exists("styleButton", $_POST))
 <form method="post">
     <button name='styleButton' value='1'>Dark Mode</button> &nbsp;
     <button name='styleButton' value='2'>Light Mode</button> &nbsp;
-    <button name='styleButton' value='3'>Other Mode</button>
+    <button name='styleButton' value='3'>Neumont Mode</button>
 </form>
 
 <?php
