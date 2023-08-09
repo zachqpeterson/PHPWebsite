@@ -76,7 +76,7 @@ $myDbConn = GetConnection();
 
 <?php
 if ($_SESSION["isAdmin"] == 1) {
-	echo '&nbsp;&nbsp;&nbsp;&nbsp;ADMIN';
+	echo '<p>ADMIN<p/>';
 }
 ?>
 

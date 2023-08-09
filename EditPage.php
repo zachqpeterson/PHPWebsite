@@ -40,9 +40,9 @@ if(array_key_exists('Add', $_POST)) {
 ?>
 
 <form method="post">
-	Title: <input type="text" name="Title" value="<?php echo $PageData['title'];?>" /><br/>
-	Header: <input type="text" name="Header" value="<?php echo $PageData['header'];?>" /><br />
-	Content: <textarea name="Content" rows="5" cols="40"><?php echo $PageData['content'];?></textarea>
+	<p>Title:<p/> <input type="text" name="Title" value="<?php echo $PageData['title'];?>" /><br/>
+	<p>Header:<p/> <input type="text" name="Header" value="<?php echo $PageData['header'];?>" /><br />
+	<p>Content:<p/> <textarea name="Content" rows="5" cols="40"><?php echo $PageData['content'];?></textarea>
 
 	<button type="submit" name="Save">Save</button>
 	<?php
@@ -56,11 +56,11 @@ if(array_key_exists('Add', $_POST)) {
 <br/>
 <br/>
 
-<p>Create New Page:</p><br/>
+<p>Create New Page:</p>
 <form method="post">
-	Title: <input type="text" name="Title"/><br />
-	Header: <input type="text" name="Header"/><br />
-	Content: <textarea name="Content" rows="5" cols="40"></textarea>
+	<p>Title:<p/> <input type="text" name="Title"/><br />
+	<p>Header:<p/> <input type="text" name="Header"/><br />
+	<p>Content:<p/> <textarea name="Content" rows="5" cols="40"></textarea>
 
 	<button type="submit" name="Add">Add Page</button>
 </form>

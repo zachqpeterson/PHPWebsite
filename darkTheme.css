@@ -7,8 +7,22 @@ h1 {
     color: #ffffff;
 }
 
+h2 {
+    color: #ffffff;
+}
+
 p {
     color: #ffffff;
+}
+
+input {
+    color: #ffffff;
+    background-color: #444444;
+}
+
+textarea {
+    color: #ffffff;
+    background-color: #444444;
 }
 
 button {
@@ -21,4 +35,19 @@ button {
 
 button:hover {
     background-color: #444444;
+}
+
+a {
+    color: #ffffff;
+}
+
+a:hover,
+a:visited,
+a:link,
+a:active {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #cccccc;
 }
