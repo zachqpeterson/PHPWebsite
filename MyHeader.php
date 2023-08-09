@@ -68,6 +68,7 @@ $myDbConn = GetConnection();
 
 &nbsp;&nbsp;<a href="Index.php">Home</a>
 &nbsp;&nbsp;<a href="Preferences.php">Settings</a>
+&nbsp;&nbsp;<a href="About.php">About</a>
 
 <form method="post">
 	<button type="submit" name="Login"><?php echo ($_SESSION["isAdmin"] == 0 ? "login" : "logout") ?></button>
