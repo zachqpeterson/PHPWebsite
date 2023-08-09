@@ -1,5 +1,36 @@
 body {
-    /*neumont colors haters going hate*/
-    background-color: dimgray;
-    color: yellow;
+    background-color: #272727;
+    height: 100%;
+}
+
+h1, h2, p, a {
+    color: #fedd00;
+}
+
+input, textarea {
+    color: #fedd00;
+    background-color: #444444;
+}
+
+button {
+    background-color: #353535;
+    border: none;
+    color: #fedd00;
+    text-align: center;
+    text-decoration: none;
+}
+
+button:hover {
+    background-color: #444444;
+}
+
+a:hover,
+a:visited,
+a:link,
+a:active {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #9e8c1c;
 }
