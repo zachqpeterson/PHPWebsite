@@ -32,8 +32,12 @@ if (array_key_exists('Save', $_POST)) {
 	UpdatePageContent($myDbConn, $PageId, $_POST['Title'], $_POST['Header'], $_POST['Content']);
 	$PageData = mysqli_fetch_array(GetPageContent($myDbConn, $PageId));
 }
-?>
 
+if(array_key_exists('Add', $_POST)) {
+	AddPage($myDbConn, $PageId, $_POST['Title'], $_POST['Header'], $_POST['Content']);
+}
+
+?>
 
 <form method="post">
 	Title: <input type="text" name="Title" value="<?php echo $PageData['title'];?>" /><br/>
@@ -47,8 +51,18 @@ if (array_key_exists('Save', $_POST)) {
 		echo "<button type='submit' name='Delete'>" . ($Deleted ? "Restore Page" : "Delete page") . "</button>";
 		}
 	?>
+</form>
 
-	
+<br/>
+<br/>
+
+<p>Create New Page:</p><br/>
+<form method="post">
+	Title: <input type="text" name="Title"/><br />
+	Header: <input type="text" name="Header"/><br />
+	Content: <textarea name="Content" rows="5" cols="40"></textarea>
+
+	<button type="submit" name="Add">Add Page</button>
 </form>
 
 <?php
