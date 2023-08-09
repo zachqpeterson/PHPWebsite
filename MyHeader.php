@@ -49,7 +49,7 @@ $MyHeader = "Games Library";
             echo '<link rel="stylesheet" type="text/css"  href="/myStyle2.css">';
             break;
         case 3:
-            echo '<link rel="stylesheet" type="text/css"  href="/myStyle3.css">';
+            echo '<link rel="stylesheet" type="text/css"  href="/neumontTheme.css">';
             break;
         default:
             echo '<link rel="stylesheet" type="text/css"  href="/darkTheme.css">';

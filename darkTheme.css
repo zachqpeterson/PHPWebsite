@@ -3,24 +3,11 @@ body {
     height: 100%;
 }
 
-h1 {
+h1,h2,p,a {
     color: #ffffff;
 }
 
-h2 {
-    color: #ffffff;
-}
-
-p {
-    color: #ffffff;
-}
-
-input {
-    color: #ffffff;
-    background-color: #444444;
-}
-
-textarea {
+input,textarea {
     color: #ffffff;
     background-color: #444444;
 }
@@ -35,10 +22,6 @@ button {
 
 button:hover {
     background-color: #444444;
-}
-
-a {
-    color: #ffffff;
 }
 
 a:hover,
