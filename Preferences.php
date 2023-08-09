@@ -1,26 +1,23 @@
 <?php
-include_once "MyHeader.php";
+$PrefStyle = 1;
 
-$Style = 1;
-
-if (isset($_COOKIE['SelectedStyle'])) {
-	$Style = $_COOKIE['SelectedStyle'];
+if (array_key_exists("styleButton", $_POST))
+{
+	$PrefStyle = $_POST['styleButton'];
 }
+
+include_once "MyHeader.php";
 
 if (array_key_exists("styleButton", $_POST))
 {
     setcookie("SelectedStyle", $_POST['styleButton'], time() + 3600);
-	$Style = $_POST['styleButton'];
 }
-
-echo 'Current Style: ' . $Style;
 
 ?>
 
-Style: &nbsp; &nbsp;
 <form method="post">
-    <button name='styleButton' value='1'>Light Mode</button> &nbsp;
-    <button name='styleButton' value='2'>Dark Mode</button> &nbsp;
+    <button name='styleButton' value='1'>Dark Mode</button> &nbsp;
+    <button name='styleButton' value='2'>Light Mode</button> &nbsp;
     <button name='styleButton' value='3'>Other Mode</button>
 </form>
 

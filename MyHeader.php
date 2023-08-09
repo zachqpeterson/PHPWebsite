@@ -7,8 +7,6 @@ include_once "Helper.php";
 
 <?php
 
-$myStyle = "1";
-
 if (array_key_exists('Login', $_POST)) {
 	if($_SESSION["isAdmin"] == 1) { $_SESSION["isAdmin"] = 0; }
 	else { $_SESSION["isAdmin"] = 1; }
@@ -17,10 +15,19 @@ else if (!isset($_SESSION["isAdmin"])) {
     $_SESSION["isAdmin"] = 0;
 }
 
-if (isset($_COOKIE["SelectedStyle"]) == true) {
-    $myStyle = $_COOKIE["SelectedStyle"];
-} else {
-    $_COOKIE["SelectedStyle"] = $myStyle;
+$Style = 1;
+
+if(isset($PrefStyle))
+{
+	$Style = $PrefStyle;
+}
+else
+{
+	if (isset($_COOKIE["SelectedStyle"]) == true) {
+		$Style = $_COOKIE["SelectedStyle"];
+	} else {
+		$_COOKIE["SelectedStyle"] = $Style;
+	}
 }
 
 $MyTitle = "Library";
@@ -34,19 +41,18 @@ $MyHeader = "Games Library";
   <meta content="text/html; charset=ISO-8859-1"  http-equiv="content-type">
   <title><?php echo $MyTitle ?></title>
     <?php
-	//Could do: echo '<link rel="stylesheet" type="text/css"  href="/myStyle' . $myStyle . '.css">'
-    switch ($myStyle) {
-        case "1":
-            echo '<link rel="stylesheet" type="text/css"  href="/myStyle1.css">';
+    switch ($Style) {
+        case 1:
+            echo '<link rel="stylesheet" type="text/css"  href="/darkTheme.css">';
             break;
-        case "2":
+        case 2:
             echo '<link rel="stylesheet" type="text/css"  href="/myStyle2.css">';
             break;
-        case "3":
+        case 3:
             echo '<link rel="stylesheet" type="text/css"  href="/myStyle3.css">';
             break;
         default:
-            echo '<link rel="stylesheet" type="text/css"  href="/myStyle1.css">';
+            echo '<link rel="stylesheet" type="text/css"  href="/darkTheme.css">';
             break;
     }
     ?>

@@ -14,7 +14,7 @@ function GetConnection()
 
 function GetChildPages($dbConn, $Parent = 0)
 {
-    $query = "SELECT id, title, header, content FROM SubPage WHERE isActive = 1 AND parentPage = " . $Parent . " ORDER BY ParentPage ASC;";
+    $query = "SELECT id, title, header, content FROM SubPage WHERE isActive = 1 AND parentPage = " . $Parent . " ORDER BY title ASC;";
 
     return @mysqli_query($dbConn, $query);
 }
