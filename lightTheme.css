@@ -1,0 +1,36 @@
+body {
+    background-color: #ffffff;
+    height: 100%;
+}
+
+h1, h2, p, a {
+    color: #000000;
+}
+
+input, textarea {
+    color: #000000;
+    background-color: #444444;
+}
+
+button {
+    background-color: beige;
+    border: none;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+}
+
+    button:hover {
+        background-color: bisque;
+    }
+
+a:hover,
+a:visited,
+a:link,
+a:active {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #cccccc;
+}
