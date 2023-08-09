@@ -49,6 +49,13 @@ function UpdatePageContent($dbConn, $id, $title, $header, $content)
 	return @mysqli_query($dbConn, $query);
 }
 
+function AddPage($dbConn, $parentPage, $title, $header, $content)
+{
+	$query = "INSERT INTO SubPage (parentPage, title, header, content, isActive) VALUES(" . $parentPage . ", '" . $title . "', '" . $header . "', '" . $content . "', true);";
+
+	return @mysqli_query($dbConn, $query);
+}
+
 function RemovePage($dbConn, $Id)
 {
     $query = "UPDATE SubPage SET isActive = 0 WHERE id = " . $Id . ";";
