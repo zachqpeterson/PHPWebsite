@@ -1,17 +1,16 @@
 <?php
-//include_once "MyHeader.php";
+include_once "MyHeader.php";
 
 $Style = 1;
 
+if (isset($_COOKIE['SelectedStyle'])) {
+	$Style = $_COOKIE['SelectedStyle'];
+}
 
 if (array_key_exists("styleButton", $_POST))
 {
     setcookie("SelectedStyle", $_POST['styleButton'], time() + 3600);
-}
-
-if (isset($_COOKIE['SelectedStyle']))
-{
-    $Style = $_COOKIE['SelectedStyle'];
+	$Style = $_POST['styleButton'];
 }
 
 echo 'Current Style: ' . $Style;
@@ -25,9 +24,6 @@ Style: &nbsp; &nbsp;
     <button name='styleButton' value='3'>Other Mode</button>
 </form>
 
-
 <?php
-    echo 'style: ' . $_POST['styleButton'] . ' set';
-
-//include_once "MyFooter.php";
+include_once "MyFooter.php";
 ?>

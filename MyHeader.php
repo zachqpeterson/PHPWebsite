@@ -17,10 +17,10 @@ else if (!isset($_SESSION["isAdmin"])) {
     $_SESSION["isAdmin"] = 0;
 }
 
-if (isset($_COOKIE["MyStyle"]) == true) {
-    $myStyle = $_COOKIE["MyStyle"];
+if (isset($_COOKIE["SelectedStyle"]) == true) {
+    $myStyle = $_COOKIE["SelectedStyle"];
 } else {
-    $_COOKIE["MyStyle"] = $myStyle;
+    $_COOKIE["SelectedStyle"] = $myStyle;
 }
 
 $MyTitle = "Library";
