@@ -14,6 +14,7 @@ if (array_key_exists("styleButton", $_POST))
 
 ?>
 
+<br/>
 <form method="post">
     <button name='styleButton' value='1'>Dark Mode</button> &nbsp;
     <button name='styleButton' value='2'>Light Mode</button> &nbsp;

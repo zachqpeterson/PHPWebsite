@@ -38,21 +38,22 @@ $MyHeader = "Games Library";
 <html lang="en">
 
 <head>
-  <meta content="text/html; charset=ISO-8859-1"  http-equiv="content-type">
-  <title><?php echo $MyTitle ?></title>
+	<meta content="text/html; charset=ISO-8859-1"  http-equiv="content-type">
+	<title><?php echo $MyTitle ?></title>
+	<link rel="stylesheet" type="text/css" href="/format.css">
     <?php
     switch ($Style) {
         case 1:
-            echo '<link rel="stylesheet" type="text/css"  href="/darkTheme.css">';
+            echo '<link rel="stylesheet" type="text/css" href="/darkTheme.css">';
             break;
         case 2:
-            echo '<link rel="stylesheet" type="text/css"  href="/lightTheme.css">';
+            echo '<link rel="stylesheet" type="text/css" href="/lightTheme.css">';
             break;
         case 3:
-            echo '<link rel="stylesheet" type="text/css"  href="/neumontTheme.css">';
+            echo '<link rel="stylesheet" type="text/css" href="/neumontTheme.css">';
             break;
         default:
-            echo '<link rel="stylesheet" type="text/css"  href="/darkTheme.css">';
+            echo '<link rel="stylesheet" type="text/css" href="/darkTheme.css">';
             break;
     }
     ?>
@@ -60,24 +61,23 @@ $MyHeader = "Games Library";
 </head>
 <body>
 
-<h1><?php echo $MyHeader ?></h1>
+<h1>
+	<?php 
+	echo $MyHeader;
+	if($_SESSION["isAdmin"]) { echo " - ADMIN"; }
+	?>
+</h1>
 
 <?php
 $myDbConn = GetConnection();
 ?>
 
-&nbsp;&nbsp;<a href="Index.php">Home</a>
-&nbsp;&nbsp;<a href="Preferences.php">Settings</a>
-&nbsp;&nbsp;<a href="About.php">About</a>
+<a class="menu" href="Index.php">Home</a>
+<a class="menu" href="Preferences.php">Settings</a>
+<a class="menu" href="About.php">About</a>
 
-<form method="post">
-	<button type="submit" name="Login"><?php echo ($_SESSION["isAdmin"] == 0 ? "login" : "logout") ?></button>
+<form class="login" method="post">
+	<button class="login" type="submit" name="Login"><?php echo ($_SESSION["isAdmin"] == 0 ? "login" : "logout") ?></button>
 </form>
-
-<?php
-if ($_SESSION["isAdmin"] == 1) {
-	echo '<p>ADMIN<p/>';
-}
-?>
 
 <br />

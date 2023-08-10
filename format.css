@@ -1,0 +1,16 @@
+.login {
+    display: inline-flex;
+    margin-left: 10px;
+}
+
+.user {
+    display: inline-flex;
+}
+
+.menu {
+    margin-right: 10px;
+}
+
+body {
+    padding: 30px;
+}
