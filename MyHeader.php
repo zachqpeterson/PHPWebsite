@@ -30,7 +30,8 @@ else
 	}
 }
 
-$MyTitle = "Library";
+if (!isset($MyTitle))
+    $MyTitle = "Library";
 $MyHeader = "Games Library";
 
 ?>
@@ -75,6 +76,7 @@ $myDbConn = GetConnection();
 <a class="menu" href="Index.php">Home</a>
 <a class="menu" href="Preferences.php">Settings</a>
 <a class="menu" href="About.php">About</a>
+<a class="menu" href="Login.php">Login</a>
 
 <form class="login" method="post">
 	<button class="login" type="submit" name="Login"><?php echo ($_SESSION["isAdmin"] == 0 ? "login" : "logout") ?></button>
