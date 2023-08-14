@@ -7,12 +7,9 @@ $PageId;
 if (array_key_exists("PageId", $_GET) == true) {
 	$PageId = $_GET["PageId"];
 }
-else {
-	echo 'Error editing page!';
-}
 
 $PageData = mysqli_fetch_array(GetPageContent($myDbConn, $PageId));
-$Deleted = $PageData['isActive'];
+$Deleted = !$PageData['isActive'];
 
 if(array_key_exists('Delete', $_POST))
 {
@@ -66,7 +63,7 @@ if(array_key_exists('Add', $_POST)) {
 </form>
 
 <?php
-echo '<br/><br/><a href="index.php?PageId=' . $PageId . '">Finish Edit</a>';
+echo '<br/><br/><a href="index.php?PageId=' . ($Deleted ? $PageData['parentPage'] : $PageId) . '">Finish Edit</a>';
 ?>
 
 <?php
