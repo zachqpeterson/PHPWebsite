@@ -1,8 +1,8 @@
 <?php
 DEFINE('DB_USER', 'root');
-DEFINE('DB_PSWD', 'Abcd11121314!');
 DEFINE('DB_SERVER', 'localhost');
 DEFINE('DB_NAME', 'GamesDB');
+require_once "DatabasePassword.php";
 
 function GetConnection()
 {
