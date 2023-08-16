@@ -69,4 +69,11 @@ function UnremovePage($dbConn, $Id)
 
 	return @mysqli_query($dbConn, $query);
 }
+
+function Login($dbConn, $username, $password)
+{
+	$query = "SELECT username, password, theme, admin FROM Users WHERE username = " . $username . " AND password = " . $password . ";";
+
+	return @mysqli_query($dbConn, $query);
+}
 ?>
