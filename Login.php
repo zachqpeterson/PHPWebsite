@@ -1,6 +1,7 @@
 
 <?php
-session_start();
+include_once "dbConnector.php";
+include_once "MyHeader.php";
 $userName;
 
 if (!isset($_SESSION["Username"])) {
@@ -17,16 +18,15 @@ if (!isset($_SESSION["Username"])) {
         $validAccount = true;
         // check Database for user
 
-
+        $Data = Login($myDbConn, $_POST["Username"], $_POST["Password"]);
+        if($Data) $row = mysqli_fetch_array($Data);
+        else $validAccount = false;
 
         if ($validAccount) {
             $userName = $_POST["Username"];
             $_SESSION["Username"] = $_POST["Username"];
-
-            //  check if user is admin
-
-
-
+            $_SESSION['isAdmin'] = $row['admin'];
+            header("Refresh:0");
         } else
             echo "<p>Incorrect Username or Password</p>";
     }
@@ -38,6 +38,7 @@ else
         unset($userName);
         unset($_SESSION["Username"]);
         unset($_SESSION["isAdmin"]);
+        header("Refresh:0");
     }
     else
         $userName = $_SESSION["Username"];
@@ -46,8 +47,6 @@ else
 $MyTitle = "Login";
 if (isset($userName))
     $MyTitle .= ' - ' . $userName;
-
-include_once "MyHeader.php";
 
 if (isset($userName)) {
     echo '<p>' . $userName . '</p>';
