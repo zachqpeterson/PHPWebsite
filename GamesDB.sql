@@ -26,7 +26,7 @@ CREATE TABLE Users(
     username VARCHAR(20),
     password VARCHAR(20),
     theme INT,
-    admin BOOL,
+    admin BOOL
 );
 
 INSERT INTO Users (username, password, theme, admin) VALUES("ADMIN_USER", "ADMIN_PASSWORD", 1, true);
