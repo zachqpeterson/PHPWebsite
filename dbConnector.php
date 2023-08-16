@@ -76,4 +76,25 @@ function Login($dbConn, $username, $password)
 
 	return @mysqli_query($dbConn, $query);
 }
+
+function CheckForUser($dbConn, $username)
+{
+	$query = "SELECT username FROM Users WHERE username = '" . $username . "';";
+
+	return @mysqli_query($dbConn, $query);
+}
+
+function CreateUser($dbConn, $username, $password)
+{
+	$query = "INSERT INTO Users (username, password, theme, admin) VALUES('" . $username . "', '" . $password . "', 1, true);";
+
+	return @mysqli_query($dbConn, $query);
+}
+
+function ChangeTheme($dbConn, $username, $theme)
+{
+	$query = "UPDATE Users SET theme = " . $theme . " WHERE username = '" . $username . "';";
+
+	return @mysqli_query($dbConn, $query);
+}
 ?>
