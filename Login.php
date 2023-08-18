@@ -26,6 +26,7 @@ if (!isset($_SESSION["Username"])) {
             $userName = $_POST["Username"];
             $_SESSION["Username"] = $_POST["Username"];
             $_SESSION['isAdmin'] = $row['admin'];
+            $PrefStyle = $row["theme"];
             header("Refresh:0");
         } else
             echo "<p>Incorrect Username or Password</p>";

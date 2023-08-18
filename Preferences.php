@@ -1,8 +1,12 @@
 <?php
 
+include_once "dbConnector.php";
 if (array_key_exists("styleButton", $_POST))
 {
 	$PrefStyle = $_POST['styleButton'];
+    if (isset($_SESSION["Username"])) {
+        ChangeTheme(GetConnection(), $_SESSION["Username"], $PrefStyle);
+    }
 }
 
 include_once "MyHeader.php";
@@ -10,6 +14,9 @@ include_once "MyHeader.php";
 if (array_key_exists("styleButton", $_POST))
 {
     setcookie("SelectedStyle", $_POST['styleButton'], time() + 3600);
+    if (isset($_SESSION["Username"])) {
+        ChangeTheme(GetConnection(), $_COOKIE["SelectedStyle"], $PrefStyle);
+    }
 }
 
 ?>
