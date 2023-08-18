@@ -30,3 +30,4 @@ CREATE TABLE Users(
 );
 
 INSERT INTO Users (username, password, theme, admin) VALUES("ADMIN_USER", "ADMIN_PASSWORD", 1, true);
+INSERT INTO Users (username, password, theme, admin) VALUES("TEST_USER", "TEST_PASSWORD", 1, false);

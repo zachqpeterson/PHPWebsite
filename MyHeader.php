@@ -7,12 +7,16 @@ include_once "Helper.php";
 
 <?php
 
-if (array_key_exists('Login', $_POST)) {
-	if($_SESSION["isAdmin"] == 1) { $_SESSION["isAdmin"] = 0; }
-	else { $_SESSION["isAdmin"] = 1; }
-}
-else if (!isset($_SESSION["isAdmin"])) {
-    $_SESSION["isAdmin"] = 0;
+if(array_key_exists('Login', $_POST))
+{
+    if(isset($_SESSION['isAdmin']))
+    {
+        unset($_SESSION['isAdmin']);
+        unset($_SESSION['Username']);
+        header(0);
+    }
+    else
+        header("Location:Login.php");
 }
 
 $Style = 1;
@@ -76,10 +80,9 @@ $myDbConn = GetConnection();
 <a class="menu" href="Index.php">Home</a>
 <a class="menu" href="Preferences.php">Settings</a>
 <a class="menu" href="About.php">About</a>
-<a class="menu" href="Login.php">Login</a>
 
 <form class="login" method="post">
-	<button class="login" type="submit" name="Login"><?php echo ($_SESSION["isAdmin"] == 0 ? "login" : "logout") ?></button>
+	<button class="login" type="submit" name="Login"><?php echo (isset($_SESSION["Username"]) ? "logout" : "login") ?></button>
 </form>
 
 <br />
