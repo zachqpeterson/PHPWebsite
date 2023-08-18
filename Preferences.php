@@ -15,7 +15,7 @@ if (array_key_exists("styleButton", $_POST))
 {
     setcookie("SelectedStyle", $_POST['styleButton'], time() + 3600);
     if (isset($_SESSION["Username"])) {
-        ChangeTheme(GetConnection(), $_COOKIE["SelectedStyle"], $PrefStyle);
+        ChangeTheme(GetConnection(), $_SESSION["Username"], $_COOKIE["SelectedStyle"]);
     }
 }
 
