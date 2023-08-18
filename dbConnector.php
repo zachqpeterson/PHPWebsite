@@ -14,14 +14,14 @@ function GetConnection()
 
 function GetChildPages($dbConn, $Parent = 0)
 {
-    $query = "SELECT id, title, header, content FROM SubPages WHERE isActive = 1 AND parentPage = " . $Parent . " ORDER BY title ASC;";
+    $query = "SELECT id, image, title, header, content FROM SubPages WHERE isActive = 1 AND parentPage = " . $Parent . " ORDER BY title ASC;";
 
     return @mysqli_query($dbConn, $query);
 }
 
 function GetAllPages($dbConn)
 {
-    $query = "SELECT id, title, header, content, parentPage, isActive FROM SubPages ORDER BY parentPage ASC;";
+    $query = "SELECT id, image, title, header, content, parentPage, isActive FROM SubPages ORDER BY parentPage ASC;";
 
     return @mysqli_query($dbConn, $query);
 }
@@ -30,11 +30,11 @@ function GetPageContent($dbConn, $Id)
 {
     $return = null;
 
-    $query = "SELECT id, title, header, content, parentPage, isActive FROM SubPages WHERE id = " . $Id;
+    $query = "SELECT id, image, title, header, content, parentPage, isActive FROM SubPages WHERE id = " . $Id;
     $return = @mysqli_query($dbConn, $query);
 
     if ((!$return) || ($return->num_rows < 1)) {
-        $query = "SELECT id, title, header, content, parentPage, isActive FROM SubPages WHERE isActive = 1 limit 1;";
+        $query = "SELECT id, image, title, header, content, parentPage, isActive FROM SubPages WHERE isActive = 1 limit 1;";
 
         $return = @mysqli_query($dbConn, $query);
     }
