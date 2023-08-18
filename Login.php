@@ -2,8 +2,8 @@
 <?php
 include_once "dbConnector.php";
 include_once "MyHeader.php";
-$userName;
 
+$userName;
 if (!isset($_SESSION["Username"])) {
     $validUser = true;
     $validPassword = true;
@@ -16,7 +16,6 @@ if (!isset($_SESSION["Username"])) {
     $validAccount = false;
     if ($validUser && $validPassword) {
         $validAccount = true;
-        // check Database for user
 
         $Data = Login($myDbConn, $_POST["Username"], $_POST["Password"]);
         if($Data) $row = mysqli_fetch_array($Data);
@@ -39,7 +38,7 @@ else
         unset($userName);
         unset($_SESSION["Username"]);
         unset($_SESSION["isAdmin"]);
-        header("Refresh:0");
+        header(0);
     }
     else
         $userName = $_SESSION["Username"];

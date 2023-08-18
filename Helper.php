@@ -21,6 +21,7 @@ function PageDisplay($PageData)
         $row = mysqli_fetch_array($PageData);
 
         echo '&nbsp; &nbsp; <h2> ' . $row['header'] . ' </h2>';
+        echo '&nbsp; &nbsp; <img src="' . $row['image'] . '">';
         echo '&nbsp; &nbsp; <p> ' . $row['content'] . '</p> <br />';
 
     }
