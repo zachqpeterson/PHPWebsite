@@ -1,5 +1,7 @@
 
 <?php
+$MyTitle = "Login";
+
 include_once "dbConnector.php";
 include_once "MyHeader.php";
 
@@ -18,7 +20,7 @@ if (!isset($_SESSION["Username"])) {
         $validAccount = true;
 
         $Data = Login($myDbConn, $_POST["Username"], $_POST["Password"]);
-        if($Data) $row = mysqli_fetch_array($Data);
+        if($Data && mysqli_num_rows($Data) > 0) $row = mysqli_fetch_array($Data);
         else $validAccount = false;
 
         if ($validAccount) {
@@ -30,6 +32,8 @@ if (!isset($_SESSION["Username"])) {
         } else
             echo "<p>Incorrect Username or Password</p>";
     }
+
+    echo '<a href="Signup.php">Dont Have an Account Signup Instead<a>';
 }
 else
 {

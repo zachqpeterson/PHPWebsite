@@ -86,7 +86,7 @@ function CheckForUser($dbConn, $username)
 
 function CreateUser($dbConn, $username, $password)
 {
-	$query = "INSERT INTO Users (username, password, theme, admin) VALUES('" . $username . "', '" . $password . "', 1, true);";
+	$query = "INSERT INTO Users (username, password, theme, admin) VALUES('" . $username . "', '" . $password . "', 1, false);";
 
 	return @mysqli_query($dbConn, $query);
 }
