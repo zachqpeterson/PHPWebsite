@@ -44,14 +44,21 @@ function GetPageContent($dbConn, $Id)
 
 function UpdatePageContent($dbConn, $id, $title, $header, $content)
 {
-	$query = "UPDATE SubPages SET title = '" . $title . "', header = '" . $header . "', content = '" . $content . "' WHERE id = " . $id . ";";
+	$query = 'UPDATE SubPages SET title = "' . $title . '", header = "' . $header . '", content = "' . $content . '" WHERE id = ' . $id . ';';
+
+	return @mysqli_query($dbConn, $query);
+}
+
+function UpdatePageImage($dbConn, $id, $image)
+{
+	$query = "UPDATE SubPages SET image = '" . $image . "' WHERE id = " . $id . ";";
 
 	return @mysqli_query($dbConn, $query);
 }
 
 function AddPage($dbConn, $parentPage, $title, $header, $content)
 {
-	$query = "INSERT INTO SubPages (parentPage, title, header, content, isActive) VALUES(" . $parentPage . ", '" . $title . "', '" . $header . "', '" . $content . "', true);";
+	$query = 'INSERT INTO SubPages (parentPage, title, header, content, isActive) VALUES(' . $parentPage . ', "' . $title . '", "' . $header . '", "' . $content . '", true);';
 
 	return @mysqli_query($dbConn, $query);
 }

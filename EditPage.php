@@ -27,6 +27,17 @@ if(array_key_exists('Delete', $_POST))
 
 if (array_key_exists('Save', $_POST)) {
 	UpdatePageContent($myDbConn, $PageId, $_POST['Title'], $_POST['Header'], $_POST['Content']);
+
+	if(isset($_FILES['img']) && !empty($_FILES['img']['name']))
+	{
+		$name = $_FILES['img']['name'];
+		$tempName = $_FILES['img']['tmp_name'];
+		$path = "Images/" . $name;
+
+		move_uploaded_file($tempName, $path);
+		UpdatePageImage($myDbConn, $PageId, $path);
+	}
+
 	$PageData = mysqli_fetch_array(GetPageContent($myDbConn, $PageId));
 }
 
@@ -36,16 +47,28 @@ if(array_key_exists('Add', $_POST)) {
 
 ?>
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
 	<p>Title:<p/> <input type="text" name="Title" value="<?php echo $PageData['title'];?>" /><br/>
 	<p>Header:<p/> <input type="text" name="Header" value="<?php echo $PageData['header'];?>" /><br />
-	<p>Content:<p/> <textarea name="Content" rows="5" cols="40"><?php echo $PageData['content'];?></textarea>
+	<p>Content:<p/> <textarea name="Content" rows="5" cols="40"><?php echo $PageData['content'];?></textarea><br />
+	<p>Image:<p/> <input type="file" name="img" accept=".png,.jpg,.jpeg"/>
+	<?php
+		if($PageData['image'] != null)
+		{
+			echo "<p>Current Image: " . $PageData['image'] . "<p/>";
+		}
+		else
+		{
+			echo "<p>No Image!<p/>";
+		}
+	?>
+
 
 	<button type="submit" name="Save">Save</button>
 	<?php
 		if($PageData['parentPage'] != null)
 		{
-		echo "<button type='submit' name='Delete'>" . ($Deleted ? "Restore Page" : "Delete page") . "</button>";
+			echo "<button type='submit' name='Delete'>" . ($Deleted ? "Restore Page" : "Delete page") . "</button>";
 		}
 	?>
 </form>
