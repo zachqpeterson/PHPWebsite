@@ -21,8 +21,6 @@ if(array_key_exists("Username", $_POST))
     }
 }
 
-echo '<a href="Login.php">Already Have an Account Login Instead<a>';
-
 ?>
 
 <form method="post">
@@ -31,3 +29,5 @@ echo '<a href="Login.php">Already Have an Account Login Instead<a>';
     <input type="password" name="ConfirmPassword" placeholder="Confirm Password" /><br />
     <button type="submit">Submit</button>
 </form>
+
+<br><a href="Login.php">Login Instead</a>

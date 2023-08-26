@@ -33,7 +33,7 @@ if (!isset($_SESSION["Username"])) {
             echo "<p>Incorrect Username or Password</p>";
     }
 
-    echo '<a href="Signup.php">Dont Have an Account Signup Instead<a>';
+//    echo '<a href="Signup.php">Dont Have an Account Signup Instead<a>';
 }
 else
 {
@@ -75,6 +75,8 @@ else
             echo '<p>* Bad Password</p>';
     }
 }
+
+echo '<br><a href="Signup.php">Signup Instead</a>';
 
 include_once "MyFooter.php";
 ?>
