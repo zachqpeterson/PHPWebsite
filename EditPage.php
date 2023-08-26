@@ -11,6 +11,7 @@ if (array_key_exists("PageId", $_GET) == true) {
 $PageData = mysqli_fetch_array(GetPageContent($myDbConn, $PageId));
 $Deleted = !$PageData['isActive'];
 
+//Handle deleting and restoring page
 if(array_key_exists('Delete', $_POST))
 {
 	if($Deleted == 0)
@@ -25,9 +26,11 @@ if(array_key_exists('Delete', $_POST))
 	}
 }
 
+//Handle updating page
 if (array_key_exists('Save', $_POST)) {
 	UpdatePageContent($myDbConn, $PageId, $_POST['Title'], $_POST['Header'], $_POST['Content']);
 
+	//Take uploaded image and put it into directory and database
 	if(isset($_FILES['img']) && !empty($_FILES['img']['name']))
 	{
 		$name = $_FILES['img']['name'];
@@ -41,12 +44,14 @@ if (array_key_exists('Save', $_POST)) {
 	$PageData = mysqli_fetch_array(GetPageContent($myDbConn, $PageId));
 }
 
+//Handle adding page
 if(array_key_exists('Add', $_POST)) {
 	AddPage($myDbConn, $PageId, $_POST['Title'], $_POST['Header'], $_POST['Content']);
 }
 
 ?>
 
+<!-- Form for updating the current page -->
 <form method="post" enctype="multipart/form-data">
 	<p>Title:<p/> <input type="text" name="Title" value="<?php echo $PageData['title'];?>" /><br/>
 	<p>Header:<p/> <input type="text" name="Header" value="<?php echo $PageData['header'];?>" /><br />
@@ -65,17 +70,19 @@ if(array_key_exists('Add', $_POST)) {
 
 
 	<button type="submit" name="Save">Save</button>
-	<?php
+		<?php
 		if($PageData['parentPage'] != null)
 		{
+			//Button to delete a page, or if the page is deleted, this acts as an undo
 			echo "<button type='submit' name='Delete'>" . ($Deleted ? "Restore Page" : "Delete page") . "</button>";
 		}
-	?>
+		?>
 </form>
 
 <br/>
 <br/>
 
+<!-- Form for creating a new page as a child of this one -->
 <p>Create New Page:</p>
 <form method="post">
 	<p>Title:<p/> <input type="text" name="Title"/><br />
