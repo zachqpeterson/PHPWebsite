@@ -4,17 +4,21 @@ $MyTitle = "Signup";
 include_once "dbConnector.php";
 include_once "MyHeader.php";
 
+//  If form was submitted process input
 if(array_key_exists("Username", $_POST))
 {
     $Data = CheckForUser($myDbConn, $_POST["Username"]);
+    //  Check if user with username already exists
     if($Data && mysqli_num_rows($Data) > 0)
     {
         echo "User " . $_POST["Username"] . " already exists";
     }
+    //  Confirm both password fields mathc
     else if(!array_key_exists("Password", $_POST) || !array_key_exists("ConfirmPassword", $_POST) || $_POST["Password"] != $_POST["ConfirmPassword"])
     {
         echo "Passwords Do not Match or Are Invalid";
     }
+    //  Valid input: Create new User
     else
     {
         CreateUser($myDbConn, $_POST["Username"], $_POST["Password"]);
@@ -23,6 +27,7 @@ if(array_key_exists("Username", $_POST))
 
 ?>
 
+<!-- Form to create new User -->
 <form method="post">
     <input type="text" name="Username" placeholder="Username" /><br />
     <input type="password" name="Password" placeholder="Password" /><br />
@@ -30,4 +35,5 @@ if(array_key_exists("Username", $_POST))
     <button type="submit">Submit</button>
 </form>
 
+<!-- Link to switch to login screen -->
 <br><a href="Login.php">Login Instead</a>

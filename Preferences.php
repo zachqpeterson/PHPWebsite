@@ -1,6 +1,8 @@
 <?php
 
 include_once "dbConnector.php";
+
+// if the button was pressed save style as session and update db
 if (array_key_exists("styleButton", $_POST))
 {
 	$PrefStyle = $_POST['styleButton'];
@@ -11,6 +13,7 @@ if (array_key_exists("styleButton", $_POST))
 
 include_once "MyHeader.php";
 
+// if the button was pressed save style as cookie and update db
 if (array_key_exists("styleButton", $_POST))
 {
     setcookie("SelectedStyle", $_POST['styleButton'], time() + 3600);
