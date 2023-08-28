@@ -93,7 +93,14 @@ $MyHeader = "Games Library";
 <h1>
 	<?php 
 	echo $MyHeader;
-	if($_SESSION["isAdmin"]) { echo " - ADMIN"; }
+    if(isset($_SESSION["Username"]))
+    {
+        if ($_SESSION["isAdmin"])
+            echo " - " . $_SESSION["Username"] . " ( ADMIN )";
+        else
+            echo " - " . $_SESSION["Username"];
+        
+    }
 	?>
 </h1>
 

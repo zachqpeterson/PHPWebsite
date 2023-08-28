@@ -22,6 +22,11 @@ if(array_key_exists("Username", $_POST))
     else
     {
         CreateUser($myDbConn, $_POST["Username"], $_POST["Password"]);
+
+        $userName = $_POST["Username"];
+        $_SESSION["Username"] = $_POST["Username"];
+        $_SESSION['isAdmin'] = false;
+        header("Location:index.php");
     }
 }
 
